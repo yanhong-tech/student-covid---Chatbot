@@ -1,0 +1,58 @@
+{
+    "Comment": "covid chatbot workflow",
+    "StartAt": "covid chat bot started hello",
+    "States": {
+        "covid chat bot started hello": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "TimeoutSeconds": 10,
+            "Parameters": {
+                "FunctionName": "arn:aws:lambda:us-west-2:424749427553:function:covid_bot_handler:$LATEST",
+                "Payload": {
+                    "Input.$": "$"
+                }
+            },
+            "Next": "choose chat needs"
+        },
+        "choose chat needs": {
+            "Type": "Choice",
+            "Choices": [{
+                    "Variable": "$.Fulfilled",
+                    "NumericEquals": 1,
+                    "Next": "Ask Questions"
+                },
+                {
+                    "Variable": "$.Fulfilled",
+                    "NumericEquals": 2,
+                    "Next": "Make Appointment"
+                },
+                {
+                    "Variable": "$.Fulfilled",
+                    "NumericEquals": 3,
+                    "Next": "Check Appointment"
+                }
+            ]
+        },
+        "Ask Questions": {
+            "Type": "Pass",
+            "Next": "Fallback handler"
+        },
+        "Make Appointment": {
+            "Type": "Pass",
+            "Next": "Fallback handler"
+        },
+        "Check Appointment": {
+            "Type": "Pass",
+            "Next": "Fallback handler"
+        },
+        "Fallback handler": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:us-west-2:424749427553:function:covid_bot_handler:$LATEST",
+            "Next": "Error handling for chat"
+        },
+        "Error handling for chat": {
+            "Type": "Pass",
+            "End": true
+        }
+    }
+}
