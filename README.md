@@ -3,10 +3,10 @@ CSUEB student covid information chatbot
 
 ### What this chatbot achieve: 
 * Make an appointment with CSUEB health center for flu shots, fever, or headache.  
-* Check the appointment 
+* Check the appointment. 
 * Ask a question:  
-        1: covid related campus policies
-        2: ggeneral covid questions 
+        1: covid related campus policies.       
+        2: general covid questions. 
         
 ![flow](images/flow.png)
 
@@ -19,7 +19,7 @@ CSUEB student covid information chatbot
 ### File
 1. *covid_bot_lambda_handler.zip*: python function add to lambda 
 2. *covid_bot.zip*: json file add to lex
-3. *covid-faq.csv* , *covid-glossary*, *covid-medical-info*: document store in S3. 
+3. *document/covid-faq.csv, covid-glossary, covid-medical-info*: document store in S3. 
 4. *stepFunction.json*: diagram flow on step funciton 
 5: *Project Report_Main*: project report 
 
